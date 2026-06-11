@@ -51,7 +51,9 @@ python3 {baseDir}/agent_skill.py login --email user@example.com --code 123456 --
 
 对 `image-generate`、`video-generate`、`tools-image-generate` 和 `tools-video-generate`，发起任何生图或生视频请求前，必须向用户展示即将扣除的预计费用，并在用户明确确认后才能继续。
 
-展示内容至少包括：模型名、`modelId`、`modelPriceId`、数量、分辨率、时长或类别等影响价格的参数、单次预计费用、整批预计总费用。费用展示必须遵守“价格显示单位规则”。
+展示内容至少包括：模型名、数量、分辨率、时长或类别等影响价格的参数、单次预计费用、整批预计总费用。费用展示必须遵守“价格显示单位规则”。
+
+面向用户的回复中不要展示 `modelId` 或 `modelPriceId`，包括费用确认、结果总结和普通说明。这两个字段只用于内部解析、CLI 参数和后端请求；需要说明模型时展示模型名即可。
 
 生成命令必须带 `--estimated-price ESTIMATED_PRICE` 和 `--yes`。其中 `--estimated-price` 表示已经展示给用户并获得确认的预计总费用；`--yes` 只表示用户已确认这次展示的费用和生产操作，不得仅凭用户有批量生成意图就自动添加。
 
